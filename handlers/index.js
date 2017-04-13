@@ -35,7 +35,9 @@ module.exports = (request, reply) => {
     const options = {
       script: hooks[payload.repository.repo_name],
       callbackUrl: payload.callback_url,
-      callbackDisable: config.callbackDisable || false
+      callbackDisable: config.callbackDisable || false,
+      repo_name: payload.repository.repo_name,
+      tag: payload.push_data.tag
     }
     runScript(options)
       .then(dockerhubCallback)
